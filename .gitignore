@@ -20,6 +20,6 @@ yarn-error.log*
 *.sw?
 
 
-.browserslistrc
-.editorconfig
-.eslintrc.js
+# .browserslistrc
+# .editorconfig
+# .eslintrc.js
