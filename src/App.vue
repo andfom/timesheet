@@ -165,15 +165,9 @@
         </v-list-item>
       </v-list>
     </v-menu>
-
         </v-toolbar-items>
       </template>
   </v-app-bar>
-
-
-
-
-
   <!-- Sizes your content based upon application components -->
   <v-content class="contentApp">
     <!-- Provides the application the proper gutter -->
