@@ -172,40 +172,7 @@
 
 
 
-<template>
-  <v-navigation-drawer
-      v-model="drawer_1"
-      absolute
-      temporary
-      right
-    >
-      <v-list-item>
 
-        <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense>
-
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-</template>
 
   <!-- Sizes your content based upon application components -->
   <v-content class="contentApp">
@@ -222,11 +189,10 @@
 </v-app>
 </template>
 <script>
-
 export default {
   data () {
     return {
-      drawer: false,
+      drawer: null,
       links: [
         {
           title: 'Отчеты',
@@ -239,11 +205,6 @@ export default {
             { id: '2', title: 'Сотрудники', url: '/reports2', },
           ],
         }
-      ],
-      drawer_1: null,
-      items: [
-        { title: 'Home', icon: 'mdi-dashboard' },
-        { title: 'About', icon: 'mdi-question_answer' },
       ],
       links_2: [
         {
@@ -291,7 +252,7 @@ export default {
           {title: 'Registration', icon: 'mdi-clipboard-account', url: '/registration'},
           ],
         },
-      ]
+      ],
     }
   }
 }

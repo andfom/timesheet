@@ -239,7 +239,7 @@ export default {
           :return-value.sync="props.item.iron"
           large
           persistent
-          @click.stop="drawer_1 = !drawer_1"
+          @click.stop="drawer = !drawer"
           @save="save"
           @cancel="cancel"
           @open="open"
@@ -268,8 +268,7 @@ export default {
   </div>
 </template>
 
-
-<addApp></addApp>
+<addEditAd></addEditAd>
 <!-- <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -306,7 +305,7 @@ export default {
     </template>
 
 <script>
-import App from '../App'
+import EditAd from './EditAd'
   export default {
     data () {
       return {
@@ -410,7 +409,7 @@ import App from '../App'
             iron: '6%',
           },
         ],
-        drawer_1: null,
+        drawer: null,
         items: [
           { title: 'Home', icon: 'mdi-dashboard' },
           { title: 'About', icon: 'mdi-question_answer' },
@@ -439,7 +438,8 @@ import App from '../App'
       },
     },
     components: {
-      addApp: App
+    addEditAd: EditAd
     }
+
   }
 </script>
