@@ -20,152 +20,141 @@
     >
 
 
-  <template v-slot:expanded-item="{ headers }">
-    <td
-      v-for="txt in headers"
-      :key="txt.id"
-      :colspan="txt.text"
-      v-text="txt.text"
-      class="tdWhite"
-      @click.stop="drawer = !drawer"
-      >
-    </td>
 
-        <v-navigation-drawer
-        app
-        temporary
-        v-model="drawer"
-        color="#FFFFFF"
-        right
-        >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title">
-            Timesheet
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            subtext
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-    <v-list>
-      <v-list-group
-        v-for="admin in items"
-        :key="admin.title"
-        color="#A1DAF8"
-        v-model="admin.active"
-        link
-        no-action
-      >
-        <template v-slot:activator>
-          <v-list-item-content>
-          <v-list-item-title v-text="admin.title"></v-list-item-title>
-          </v-list-item-content>
-        </template>
-
-          <v-list-item
-            v-for="project in items"
-            :key="project.title"
-            :to="project.url"
-            link
-            >
-            <v-list-item-title v-text="project.title"></v-list-item-title>
-          </v-list-item>
-
-          <!-- <v-list-item
-          v-for="user in admin.items_2"
-            :key="user.title"
-            :to="user.url"
+      <template v-slot:expanded-item="{ headers }">
+        <td
+          v-for="txt in headers"
+          :key="txt.id"
+          :colspan="txt.text"
+          v-text="txt.text"
+          class="tdWhite"
+          @click.stop="drawer = !drawer"
           >
-          <v-list-item-title v-text="user.title"></v-list-item-title>
-          </v-list-item> -->
-      </v-list-group>
+        </td>
 
-      <v-list-group
-        v-for="admin in links_2"
-        :key="admin.title"
-        color="#A1DAF8"
-        v-model="admin.active"
-        link
-        no-action
-      >
-        <template v-slot:activator>
-          <v-list-item-title v-text="admin.title"></v-list-item-title>
-        </template>
+          <!-- <v-btn @click.stop="drawer = !drawer">Red</v-btn> -->
 
-        <v-list-group
-          no-action
-          sub-group
-          value="true"
-          color="#A1DAF8"
-          v-for="project in admin.links_3"
-          :key="project.title"
-          v-model="project.active"
-          link
-        >
-          <template v-slot:activator>
+            <v-navigation-drawer
+            app
+            temporary
+            v-model="drawer"
+            color="#FFFFFF"
+            right
+            width="40%"
+            >
+          <!-- <v-list-item>
             <v-list-item-content>
-              <v-list-item-title v-text="project.title"></v-list-item-title>
+              <v-list-item-title class="title">
+                Timesheet
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                subtext
+              </v-list-item-subtitle>
             </v-list-item-content>
-          </template>
+          </v-list-item> -->
+
+
+          <div class="my-2 mt-5 mr-5 mb-5 d-flex align-end flex-column">
+            <v-btn depressed color="primary"
+            >Изменить</v-btn>
+          </div>
+
+          <v-divider></v-divider>
+          <div class="align-start ml-3 mr-3 mb-n4">
+          <v-text-field
+            label="title"
+            name="Title"
+            type="text"
+            class="mt-3 mb-n4"
+            v-model="editedTitle"
+            outlined
+
+          ></v-text-field>
+
+          <v-text-field
+            label="description"
+            name="Description"
+            type="text"
+            outlined
+            class="mb-n4"
+            v-model="editedDescription"
+          ></v-text-field>
+
+          <v-text-field
+            label="title2"
+            name="Title2"
+            type="text"
+            outlined
+            class="mb-n4"
+            v-model="editedTitle2"
+          ></v-text-field>
+
+          <v-text-field
+            label="title3"
+            name="Title3"
+            type="text"
+            outlined
+            class="mb-n4"
+            v-model="editedTitle3"
+          ></v-text-field>
+
+          <v-btn
+          block
+          color="primary"
+          @click="hidden = !hidden"
+          >Проектная команда</v-btn>
+
+          <!-- <v-text-field
+            name="hidden"
+            type="text"
+            class="mb-n4"
+            v-for="txt in projectUser"
+            :key="txt.id"
+            v-text="txt.name"
+            v-show="hidden"
+            v-model="hidden"
+            link
+            ></v-text-field> -->
 
             <v-list-item
-            v-for="addproject in project.items_1"
-            :key="addproject.id"
-            :to="addproject.url"
+            v-for="project in projectUser"
+            :key="project.id"
+            :to="project.url"
+            v-show="hidden"
+            v-model="hidden"
+            link
             >
-            <v-list-item-title v-text="addproject.title"></v-list-item-title>
+            <v-list-item-title v-text="project.name"></v-list-item-title>
           </v-list-item>
-          <v-list-item
-          v-for="transform in project.items_2"
-            :key="transform.title"
-            :to="transform.url"
-          >
-          <v-list-item-title v-text="transform.title"></v-list-item-title>
-          </v-list-item>
-        </v-list-group>
-        <v-list-group
-          no-action
-          sub-group
-          value="true"
-          color="#A1DAF8"
-          v-for="users in admin.links_4"
-          :key="users.title"
-          v-model="users.active"
-          link
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title v-text="users.title"></v-list-item-title>
-            </v-list-item-content>
+
+          <v-text-field
+            label="Исполнитель"
+            name="Исполнитель"
+            type="text"
+            outlined
+            class="mt-4 font-italic font-weight-light"
+            v-model="editedTitle3"
+          ></v-text-field>
+
+
+          </div>
+      </v-navigation-drawer>
           </template>
-
-          <v-list-item
-            v-for="transformUser in users.items"
-            :key="transformUser.title"
-            :to="transformUser.url"
-          >
-            <v-list-item-title v-text="transformUser.title"></v-list-item-title>
-
-          </v-list-item>
-        </v-list-group>
-      </v-list-group>
-    </v-list>
-  </v-navigation-drawer>
-      </template>
-    </v-data-table>
-  </div>
-</template>
-    </v-sheet>
+        </v-data-table>
+      </div>
     </template>
+  </v-sheet>
+</template>
 
 <script>
   export default {
     data () {
       return {
+        editedTitle: '',
+        editedTitle2: '',
+        editedTitle3: '',
+        editedDescription: '',
+        hidden: '',
         expanded: [],
         selected: [],
         singleExpand: false,
@@ -175,6 +164,20 @@
         snackText: '',
         max25chars: v => v.length <= 25 || 'Input too long!',
         pagination: {},
+        projectUser: [
+          {
+            name: 'Апкова Луиза', url: '/reports2'
+          },
+          {
+            name: 'Ермолаев Семен', url: '/reports2'
+          },
+          {
+            name: 'Анна Петухова', url: '/reports2'
+          },
+          {
+            name: 'Кузин Александр', url: '/reports2'
+          },
+        ],
         headers: [
           {
             text: 'Dessert (100g serving)',
@@ -271,49 +274,10 @@
           },
         ],
         drawer: null,
-        items: [
-          { title: 'Home', icon: 'mdi-dashboard' },
-          { title: 'About', icon: 'mdi-question_answer' },
-        ],
-        links_2: [
-            {
-              id: 3,
-              title: 'Администрирование',
-              icon: 'mdi-chevron-right',
-              url: '/admin',
-              action: 'mdi-chevron-right',
-              links_3: [
-                {
-                  id: 4,
-                  title: 'Проекты',
-                  icon: 'mdi-chevron-right',
-                  url: '/admin',
-                  action: 'mdi-chevron-right',
-                  items_1: [
-                    { id: '5', title: 'Добавление проекта', url: '/project', }
-                  ],
-                  items_2: [
-                    { id: '6', title: 'Изменить проект', url: '/project_2', },
-                  ],
-                },
-              ],
-              links_4: [
-                {
-                  id: 7,
-                  title: 'Сотрудники',
-                  icon: 'mdi-chevron-right',
-                  url: '/admin',
-                  action: 'mdi-chevron-right',
-                  items: [
-                    { id: '8', title: 'Редактировать сотрудника', url: '/transformUser', }
-                  ],
-                },
-              ],
-            },
-          ],
-        }
-      },
-    }
+        hidden: false,
+      }
+    },
+  }
 
 </script>
 

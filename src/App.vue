@@ -122,8 +122,8 @@
         </v-list-group>
       </v-list-group>
     </v-list>
-
   </v-navigation-drawer>
+
   <v-app-bar app color="rgba(243, 244, 248)">
       <v-app-bar-nav-icon color="rgba(0, 86, 155)"
       @click="drawer = !drawer"
